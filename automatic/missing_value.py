@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 
 class AutomaticProcess():
@@ -13,9 +14,10 @@ class AutomaticProcess():
             'drop_row': [],
         }
 
-    def missing_value_process(self, df: pd.DataFrame,
-                              upper_threshold=0.5: float,
-                              lower_threshold=0.1: float):
+    def missing_value_process(self,
+                              df: pd.DataFrame,
+                              upper_threshold: float = 0.5,
+                              lower_threshold: float = 0.1):
         r"""
         Args
             df: Missing Value를 처리할 DataFrame,
@@ -35,7 +37,8 @@ class AutomaticProcess():
 
 if __name__ == '__main__':
     ap = AutomaticProcess()
-    df = pd.read_csv('./data/AirQualityUCI.csv')
+    print(os.getcwd())
+    df = pd.read_csv(r'../data/AirQualityUCI.csv')
 
     print(df.info())
     ap.missing_value_process(df)
