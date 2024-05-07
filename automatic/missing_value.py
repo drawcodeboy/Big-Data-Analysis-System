@@ -17,12 +17,15 @@ class AutomaticProcess():
     def missing_value_process(self,
                               df: pd.DataFrame,
                               upper_threshold: float = 0.5,
-                              lower_threshold: float = 0.1):
+                              lower_threshold: float = 0.1,
+                              imputation: str = 'mean'):
         r"""
         Args
             df: Missing Value를 처리할 DataFrame,
             lower_threshold: 해당 기준 값 이하는
         """
+        _imputation_li = ['mean', 'median', 'mode']  # 다른 것도 더 추가해야 함
+        assert imputation in _impuatation_li, 'This is NOT method for imputation!'
 
         for col in df.columns:
             missing_value_ratio = df[col].isnull().sum()/len(df[col])
